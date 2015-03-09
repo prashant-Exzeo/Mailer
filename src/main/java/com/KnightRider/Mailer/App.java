@@ -1,20 +1,24 @@
 package com.KnightRider.Mailer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.mail.MessagingException;
 
-/**
- * Hello world!
- *
- */
 public class App {
-	public static void main(String[] args) {
-		System.out.println("about to Send mail..");
+    public static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-		try {
-			new Mailer().sendMail();
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
-		System.out.println("Mail sent Successfully...");
-	}
+    public static void main(String[] args) {
+        sendEmail();
+    }
+
+    public static void sendEmail() {
+        LOGGER.info("about to Send mail..");
+        try {
+            new Mailer().sendMail();
+        } catch (MessagingException e) {
+            LOGGER.error("Something went wrong while sending mail :( ", e);
+        }
+        LOGGER.info("Mail sent Successfully...");
+    }
 }

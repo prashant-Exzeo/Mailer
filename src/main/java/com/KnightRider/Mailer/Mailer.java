@@ -1,5 +1,8 @@
 package com.KnightRider.Mailer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -19,12 +22,13 @@ import javax.mail.internet.MimeMultipart;
 
 public class Mailer {
 
-	String smtpHost = "relay"; // Mail Server
+	final Logger LOGGER = LoggerFactory.getLogger(Mailer.class);
+	String smtpHost = "relay.appriver.com"; // Mail Server
 	String smtpPort = "2525"; // Port
 	// String smtpAuth = "true";
 	String smtpStarttlsEnable = "true";
-	String mailUser = "prashantk@exz.com";
-	String toAddress = "prashantk@exz.com";
+	String mailUser = "prashantk@exzeo.com";
+	String toAddress = "prashantk@exzeo.com";
 
 	private Multipart addAttachment(Multipart multipart, String filename)
 			throws MessagingException {
@@ -36,7 +40,7 @@ public class Mailer {
 		return multipart;
 	}
 
-	public void sendMail() throws AddressException, MessagingException {
+	public void sendMail() throws MessagingException {
 
 		String filename = "/home/prashant/Desktop/gitCommands";
 		// Get system properties
